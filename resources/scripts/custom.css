@@ -1,0 +1,179 @@
+/* Import a premium modern font for the panel name */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Asimovian&display=swap');
+
+/* 1. Background & Scrollbar Lock */
+html, body {
+    background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986') !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    overflow-x: hidden !important; /* Kills the horizontal scrollbar jitter */
+}
+
+/* 2. Unified Solid Navigation Bar */
+/* This strips the dark boxes from the right side so it inherits the lighter left-side color */
+div[class*="NavigationBar"] .bg-neutral-900,
+div[class*="NavigationBar"] .bg-gray-900,
+div[class*="NavigationBar"] .bg-black,
+div[class*="NavigationBar"] > div {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Subtle hover effect for the navbar buttons so they remain interactive */
+div[class*="NavigationBar"] a:not([href="/"]):hover,
+div[class*="NavigationBar"] button:hover {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 6px !important;
+}
+
+/* 3. Panel Name ("AcHDi") Custom Font & Styling */
+/* =========================================
+   PANEL BRANDING & LOGO FONT ONLY
+   ========================================
+/* Target .font-header ONLY if it is an anchor link (<a>) or inside one */
+a.font-header,
+a .font-header,
+a:has(.font-header) {
+    font-family: "Asimovian", sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 1.6rem !important;
+    letter-spacing: 2px !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 12px rgba(168, 85, 247, 0.8) !important;
+    text-transform: none !important; 
+    transition: all 0.3s ease-in-out !important;
+}
+
+/* Hover effect for the link */
+a.font-header:hover,
+a:hover .font-header,
+a:has(.font-header):hover {
+    text-shadow: 0 0 22px rgba(168, 85, 247, 1) !important;
+    color: #faf5ff !important;
+}
+
+/* 4. Server Card (Outer container only) */
+a[href*="/server/"] {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.2s ease !important;
+}
+
+a[href*="/server/"]:hover {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(168, 85, 247, 0.5) !important; /* Purple hover border */
+}
+
+/* 5. Strip inner card box borders */
+a[href*="/server/"] * {
+    border: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Ensure all server card text remains readable */
+a[href*="/server/"] span, 
+a[href*="/server/"] p,
+a[href*="/server/"] div {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+
+/* =========================================
+   SERVER MANAGEMENT PAGE (CONSOLE & STATS)
+   ========================================= */
+
+/* 1. Sub-Navigation Bar (Console, Files, Databases, etc.) */
+div[class*="SubNavigation"] {
+    background-color: transparent !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+/* Clean up the individual sub-nav buttons */
+div[class*="SubNavigation"] div a {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 6px !important;
+    margin-right: 4px !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+/* Active and Hover states for sub-nav */
+div[class*="SubNavigation"] div a:hover,
+div[class*="SubNavigation"] div a.active {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(168, 85, 247, 0.5) !important; /* Purple accent */
+    color: #ffffff !important;
+}
+
+/* =========================================
+   THE UNIVERSAL GLASSMORPHISM OVERRIDE
+   ========================================= */
+
+/* 1. Target EVERY element with a dark grey background class, regardless of HTML tag */
+*[class*="bg-gray-600"]:not(button):not(input):not(html):not(body),
+*[class*="bg-gray-700"]:not(button):not(input):not(html):not(body),
+*[class*="bg-zinc-600"]:not(button):not(input):not(html):not(body),
+*[class*="bg-zinc-700"]:not(button):not(input):not(html):not(body),
+*[class*="bg-neutral-600"]:not(button):not(input):not(html):not(body),
+*[class*="bg-neutral-700"]:not(button):not(input):not(html):not(body),
+*[class*="bg-slate-600"]:not(button):not(input):not(html):not(body),
+*[class*="bg-slate-700"]:not(button):not(input):not(html):not(body) {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 2. Target the darker inner boxes (like the ones around the Address/Uptime icons) */
+*[class*="bg-gray-800"]:not(button):not(html):not(body),
+*[class*="bg-zinc-800"]:not(button):not(html):not(body),
+*[class*="bg-neutral-800"]:not(button):not(html):not(body),
+*[class*="bg-slate-800"]:not(button):not(html):not(body) {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 6px !important;
+    box-shadow: none !important;
+}
+
+/* 3. Ensure the Terminal/Console background stays dark and readable */
+div.bg-black {
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* =========================================
+   THE GRAPH CARD SILVER BULLET
+   ========================================= */
+
+/* Surgically target the grid containers that hold Chart.js graphs */
+html body #app div[class*="grid"] > div:has(canvas) {
+    background: rgba(255, 255, 255, 0.04) !important;
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Force any sneaky nested wrappers inside the graph card to be invisible */
+html body #app div[class*="grid"] > div:has(canvas) div,
+html body #app div[class*="grid"] > div:has(canvas) article,
+html body #app div[class*="grid"] > div:has(canvas) section {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
