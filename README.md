@@ -3,7 +3,7 @@
 A premium, custom-built UI theme for the official Pterodactyl Panel. This theme replaces the default flat grey interface with a stunning frosted-glass aesthetic, complete with a starry night background, translucent server cards, unified navigation bars, and a glowing custom logo.
 
 ## ✨ Features
-* **Drop-in Installation:** Pre-configured files that extract perfectly into your panel directory.
+* **Drop-in Installation:** Automated commands download and extract the customized files perfectly into your panel directory.
 * **Frosted Glass UI:** Server cards, navigation bars, and stat boxes feature translucent blurring (`backdrop-filter`) to blend seamlessly with the background.
 * **Vibrant Purple Accents:** Replaces Pterodactyl's default blue with a modern, deep purple colorway.
 * **Smart Graph Transparency:** Completely overrides opaque graph backgrounds on the server management view.
@@ -16,17 +16,29 @@ Before installing this theme, ensure your server meets the following requirement
 * A fully installed, official **Pterodactyl Panel**.
 * Root SSH access to your web server.
 * `yarn` and `node` installed on your panel server.
+* `unzip` installed on your server (the installation steps include a command to install this if you don't have it).
 
 ---
 
 ## 🚀 Installation Guide
 
-### 1. Download and Extract the Theme
-Log into your web server via SSH as `root`. Navigate to your Pterodactyl directory, download the theme archive, and extract it to overwrite the default configuration files.
+### 1. Download and Apply the Theme Files
+Log into your web server via SSH as `root`. The following command block will navigate to your Pterodactyl directory, ensure `unzip` is installed, download this repository as a ZIP file, extract the files (`tailwind.config.js` and the `resources` folder) to overwrite the defaults, and automatically clean up the downloaded files.
 
-Run the following commands:
+Copy and paste this entire block into your terminal:
 
 ```bash
 cd /var/www/pterodactyl
-curl -L -o achdi-theme.tar.gz [https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/achdi-theme.tar.gz](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/achdi-theme.tar.gz)
-tar -xzvf achdi-theme.tar.gz
+
+# Ensure unzip is installed
+apt update && apt install -y unzip
+
+# Download the repository as a ZIP file directly from GitHub
+curl -L -o achdi-theme.zip [https://github.com/YOUR_USERNAME/YOUR_REPO/archive/refs/heads/main.zip](https://github.com/YOUR_USERNAME/YOUR_REPO/archive/refs/heads/main.zip)
+
+# Extract into a temporary folder and forcefully copy the contents into the root panel directory
+unzip -q -o achdi-theme.zip -d achdi_temp
+cp -rf achdi_temp/*/* ./
+
+# Clean up the downloaded zip and temporary folder
+rm -rf achdi_temp achdi-theme.zip
